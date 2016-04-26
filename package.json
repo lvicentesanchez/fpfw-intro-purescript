@@ -1,0 +1,11 @@
+{
+  "private" : true,
+  "scripts" : {
+    "clean" : "rm -R bower_components output",
+    "build" : "pulp browserify --optimise --to dist/index.js",
+    "deps"  : "bower cache clean && bower update"
+  },
+  "dependencies": {
+    "virtual-dom": "^2.1.1"
+  }
+}
