@@ -74,11 +74,10 @@ submit caption query =
 textInput
   :: String
   -> String
-  -> RegistrationState
-  -> (RegistrationState -> String)
+  -> String
   -> (String -> Unit -> RegistrationQuery Unit)
   -> ComponentHTML RegistrationQuery
-textInput id label state getter query =
+textInput id label value query =
   H.div [ P.class_ (H.className "form-group") ]
         [ H.label [ P.for id
                   , P.class_ (H.className "col-md-2 control-label")
@@ -88,7 +87,7 @@ textInput id label state getter query =
                 [ H.input [ P.inputType P.InputText
                           , P.class_ (H.className "form-control")
                           , P.id_ id
-                          , P.value (getter state)
+                          , P.value value
                           , E.onValueChange (E.input query)
                           ]
                 ]
@@ -99,18 +98,18 @@ registrationForm = component { render, eval }
   where
 
   render :: RegistrationState -> ComponentHTML RegistrationQuery
-  render state =
+  render { name, surname, age, errors } =
     H.div_ [ navbar
            , H.div [ P.class_ (H.className "container-fluid") ]
                    [ H.div [ P.class_ (H.className "row") ]
                            [ H.form [ P.class_ (H.className "col-md-8 form-horizontal") ]
-                                    [ textInput "name" "Name" state _.name UpdateName
-                                    , textInput "surname" "Surname" state _.surname UpdateSurname
-                                    , textInput "age" "Age" state _.age UpdateAge
+                                    [ textInput "name" "Name" name UpdateName
+                                    , textInput "surname" "Surname" surname UpdateSurname
+                                    , textInput "age" "Age" age UpdateAge
                                     , submit "Register" SubmitRegistrationForm
                                     , H.div [ P.class_ (H.className "form-group") ]
                                             [ H.div [ P.class_ (H.className "col-md-offset-2 col-md-6") ]
-                                                    [ errorPanel state.errors ]
+                                                    [ errorPanel errors ]
                                             ]
                                     ]
                            ]
