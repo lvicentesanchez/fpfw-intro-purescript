@@ -70,6 +70,7 @@ submit caption query =
                            [ H.text caption ]
                 ]
         ]
+
 textInput
   :: String
   -> String
