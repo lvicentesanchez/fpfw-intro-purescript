@@ -101,14 +101,14 @@ registrationForm = component { render, eval }
   render :: RegistrationState -> ComponentHTML RegistrationQuery
   render state =
     H.div_ [ navbar
-           , H.div [ P.class_ $ H.className "container-fluid" ]
-                   [ H.div [ P.class_ $ H.className "row" ]
-                           [ H.form [ P.class_ $ H.className "col-md-8 form-horizontal" ]
+           , H.div [ P.class_ (H.className "container-fluid") ]
+                   [ H.div [ P.class_ (H.className "row") ]
+                           [ H.form [ P.class_ (H.className "col-md-8 form-horizontal") ]
                                     [ textInput "name" "Name" state _.name UpdateName
                                     , textInput "surname" "Surname" state _.surname UpdateSurname
                                     , textInput "age" "Age" state _.age UpdateAge
                                     , submit "Register" SubmitRegistrationForm
-                                    , H.div [ P.class_ $ H.className "form-group" ]
+                                    , H.div [ P.class_ (H.className "form-group") ]
                                             [ H.div [ P.class_ (H.className "col-md-offset-2 col-md-6") ]
                                                     [ errorPanel state.errors ]
                                             ]
