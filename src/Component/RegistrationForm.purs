@@ -98,7 +98,7 @@ registrationForm = component { render, eval }
                                                                , P.class_ (H.className "btn btn-default")
                                                                , E.onClick (\_ -> EH.preventDefault $> action SubmitRegistrationForm)
                                                                ]
-                                                              [ H.text "Submit" ]
+                                                               [ H.text "Submit" ]
                                                     ]
                                             ]
                                     , H.div [ P.class_ $ H.className "form-group" ]

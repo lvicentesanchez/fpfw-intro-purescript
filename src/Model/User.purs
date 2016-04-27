@@ -28,4 +28,4 @@ fromRegistration name surname age =
   <*> nonEmpty "surname" surname
   <*> isInteger "age" age
   where
-    fromValid name surname age = User { name, surname, age}
+  fromValid name surname age = User { name, surname, age}
