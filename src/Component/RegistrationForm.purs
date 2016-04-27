@@ -119,8 +119,8 @@ registrationForm = component { render, eval }
 
   eval :: Natural RegistrationQuery (ComponentDSL RegistrationState RegistrationQuery (RegistrationEff eff))
   eval (SubmitRegistrationForm next) = do
-    state <- get
-    runV error valid (fromRegistration state.name state.surname state.age)
+    { name, surname, age, errors } <- get
+    runV error valid (fromRegistration name surname age)
     pure next
     where
     error err = modify (_ { errors = err })
