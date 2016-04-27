@@ -56,6 +56,20 @@ navbar =
                 ]
          ]
 
+submit
+  :: String
+  -> (Unit -> RegistrationQuery Unit)
+  -> ComponentHTML RegistrationQuery
+submit caption query =
+  H.div [ P.class_ $ H.className "form-group" ]
+        [ H.div [ P.class_ (H.className "col-md-offset-2 col-md-6") ]
+                [ H.button [ P.buttonType P.ButtonSubmit
+                           , P.class_ (H.className "btn btn-default")
+                           , E.onClick (\_ -> EH.preventDefault $> action query)
+                           ]
+                           [ H.text caption ]
+                ]
+        ]
 textInput
   :: String
   -> String
@@ -92,15 +106,7 @@ registrationForm = component { render, eval }
                                     [ textInput "name" "Name" state _.name UpdateName
                                     , textInput "surname" "Surname" state _.surname UpdateSurname
                                     , textInput "age" "Age" state _.age UpdateAge
-                                    , H.div [ P.class_ $ H.className "form-group" ]
-                                            [ H.div [ P.class_ (H.className "col-md-offset-2 col-md-6") ]
-                                                    [ H.button [ P.buttonType P.ButtonSubmit
-                                                               , P.class_ (H.className "btn btn-default")
-                                                               , E.onClick (\_ -> EH.preventDefault $> action SubmitRegistrationForm)
-                                                               ]
-                                                               [ H.text "Submit" ]
-                                                    ]
-                                            ]
+                                    , submit "Register" SubmitRegistrationForm
                                     , H.div [ P.class_ $ H.className "form-group" ]
                                             [ H.div [ P.class_ (H.className "col-md-offset-2 col-md-6") ]
                                                     [ errorPanel state.errors ]
@@ -120,7 +126,7 @@ registrationForm = component { render, eval }
     error err = modify (_ { errors = err })
     valid (User u) = do
       error []
-      fromAff $ log ("Submit :: " ++ u.name ++ " :: " ++ u.surname ++ " :: " ++ (show u.age))
+      fromAff $ log ("Submit :: User(" ++ u.name ++ ", " ++ u.surname ++ ", " ++ (show u.age) ++ ")")
 
   eval (UpdateAge age next) = do
     modify (_ { age = age })
