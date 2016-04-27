@@ -78,12 +78,12 @@ textInput
   -> (RegistrationState -> String)
   -> (String -> Unit -> RegistrationQuery Unit)
   -> ComponentHTML RegistrationQuery
-textInput id text state getter query =
+textInput id label state getter query =
   H.div [ P.class_ (H.className "form-group") ]
         [ H.label [ P.for id
                   , P.class_ (H.className "col-md-2 control-label")
                   ]
-                  [ H.text text ]
+                  [ H.text label ]
         , H.div [ P.class_ (H.className "col-md-6") ]
                 [ H.input [ P.inputType P.InputText
                           , P.class_ (H.className "form-control")
