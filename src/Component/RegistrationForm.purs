@@ -63,7 +63,7 @@ textInput
   -> (RegistrationState -> String)
   -> (String -> Unit -> RegistrationQuery Unit)
   -> ComponentHTML RegistrationQuery
-textInput id text state selector query =
+textInput id text state getter query =
   H.div [ P.class_ (H.className "form-group") ]
         [ H.label [ P.for id
                   , P.class_ (H.className "col-md-2 control-label")
@@ -73,7 +73,7 @@ textInput id text state selector query =
                 [ H.input [ P.inputType P.InputText
                           , P.class_ (H.className "form-control")
                           , P.id_ id
-                          , P.value (selector state)
+                          , P.value (getter state)
                           , E.onValueChange (E.input query)
                           ]
                 ]
