@@ -1,10 +1,10 @@
 {
-  "name"        : "fpfw-intro-purescript",
-  "version"     : "1.0.0",
-  "moduleType"  : [
+  "name" : "fpfw-intro-purescript",
+  "version" : "1.0.0",
+  "moduleType" : [
     "node"
   ],
-  "ignore"      : [
+  "ignore" : [
     "**/.*",
     "bower_components",
     "dist/index.js",
@@ -12,7 +12,8 @@
     "output"
   ],
   "dependencies" : {
-    "purescript-alert"             : "^0.0.3",
-    "purescript-halogen"           : "^0.7.0"
+    "purescript-alert" : "^0.0.3",
+    "purescript-halogen" : "^0.7.0",
+    "purescript-validation" : "^0.2.1"
   }
 }
